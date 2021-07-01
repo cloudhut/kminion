@@ -6,6 +6,9 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "kminion.labels" . | nindent 4}}
+    {{- if .Values.customLabels}}
+    {{toYaml .Values.customLabels | nindent 4}}
+    {{- end}}
     {{- if .Values.serviceMonitor.additionalLabels}}
     {{toYaml .Values.serviceMonitor.additionalLabels | nindent 4}}
     {{- end}}
